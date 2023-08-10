@@ -1,0 +1,80 @@
+@font-face {
+    font-family: "Aurigny";
+    src: url("./assets/fonts/museosans.otf") format("opentype");
+}
+
+body {
+    font-family: Aurigny, sans-serif;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    color: #37474F;
+}
+
+#root {
+    height: 100vh;
+    width: 100vw;
+}
+
+.container {
+    margin: 0 10% 0 10%;
+}
+
+input[type=text],
+input[type=number],
+input[type=date],
+select,
+textarea {
+    width: 90%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    font-size: 1rem;
+    font-family: Aurigny, sans-serif;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.show-pound {
+    position: relative;
+}
+
+.show-pound input {
+    padding-left: 18px;
+}
+
+.show-pound:before {
+    position: absolute;
+    content: "£";
+    left: 5px;
+    top: 13px;
+    font-size: 1rem;
+    /* font-weight: bold; */
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #007FFF;
+    border-bottom: 16px solid #007FFF;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

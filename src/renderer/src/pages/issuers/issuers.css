@@ -1,0 +1,48 @@
+.table-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+}
+
+table > thead {
+    height: 50px;
+    background-color: #FAB609;
+}
+
+table > tbody {
+    text-align: center;
+}
+
+table > tbody > tr {
+    height: 40px;
+}
+
+tr:nth-child(even) {
+    background-color: #FEF7E6;
+}
+
+tbody > tr:hover {
+    background-color: #FEF6CC;
+}
+
+h1 {
+    margin-bottom: 1rem;
+}
+
+.issuer-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.issuer-control-button {
+    width: 10rem;
+}
+
+.input-hint {
+    color: #A3A5A7;
+}
