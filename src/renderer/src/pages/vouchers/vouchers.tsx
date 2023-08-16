@@ -6,7 +6,7 @@ function Vouchers() {
         <>
             <Navbar />
             <div className="container">
-                Vouchers
+                <h1 style={{ margin: "0 0 0.5rem 0" }}>Vouchers</h1>
             </div>
         </>
     )

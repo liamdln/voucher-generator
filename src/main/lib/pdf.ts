@@ -5,8 +5,8 @@ import { Voucher } from "../../types/voucher";
 import moment from "moment";
 import { defaultConfig, readConfig } from "./config";
 import { Config } from "../../types/config";
-import museosans from "../../../../resources/museosans.otf?asset&asarUnpack"
-import aurigny from "../../../../resources/aurigny.png?asset&asarUnpack"
+import museosans from "../../../resources/museosans.otf?asset&asarUnpack"
+import aurigny from "../../../resources/aurigny.png?asset&asarUnpack"
 
 const ELEMENT_PADDING = 4;
 const TITLE_FONT_SIZE = 14;
