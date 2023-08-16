@@ -5,6 +5,7 @@ import './global.css'
 import { createHashRouter, RouterProvider, } from "react-router-dom";
 import Issuers from "./pages/issuers/Issuers";
 import Settings from "./pages/settings/Settings";
+import Vouchers from "./pages/vouchers/vouchers";
 
 // router
 const router = createHashRouter([
@@ -19,6 +20,10 @@ const router = createHashRouter([
     {
         path: "/settings",
         element: <Settings />,
+    },
+    {
+        path: "/vouchers",
+        element: <Vouchers />,
     },
 ]);
 
