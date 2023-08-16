@@ -58,8 +58,7 @@ function Home() {
     const postVoucher = () => {
         setShowLoadingModal(true);
         window.api.addVoucher(JSON.stringify(voucher)).then((_) => {
-            setShowLoadingModal(false);
-            setShowSuccessModal(true);
+            window.location.href = "#/jobs"
         }).catch((err) => {
             console.error(err);
             setShowLoadingModal(false);

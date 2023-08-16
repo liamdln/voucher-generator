@@ -1,12 +1,16 @@
 import { PDFDocument, rgb } from "pdf-lib";
 import Fontkit from "@pdf-lib/fontkit";
 import fs, { existsSync } from 'fs';
-import { Voucher } from "../../../types/voucher";
+import { Voucher } from "../../types/voucher";
 import moment from "moment";
-import { defaultConfig, readConfig } from "../config/config";
-import { Config } from "../../../types/config";
-import museosans from "../../../../resources/museosans.otf?asset&asarUnpack"
-import aurigny from "../../../../resources/aurigny.png?asset&asarUnpack"
+import museosans from "../../../resources/museosans.otf?asset&asarUnpack"
+import aurigny from "../../../resources/aurigny.png?asset&asarUnpack"
+import { updateVoucherGenProgress } from "./ipc/socket";
+import { reportJobProgress } from "./jobs";
+import { parentPort, workerData } from "worker_threads";
+import { Worker } from "worker_threads";
+import { Config } from "../../types/config";
+import { defaultConfig, readConfig } from "./config";
 
 const ELEMENT_PADDING = 4;
 const TITLE_FONT_SIZE = 14;
@@ -18,7 +22,38 @@ const DISCLAIMER_LINE_HEIGHT = 5;
 
 moment.locale("en-gb")
 
-export async function createPdf(voucher: Voucher) {
+export function spawnGeneratorWorker(voucher: Voucher, jobId: string) {
+    const worker = new Worker(__filename, {
+        workerData: {
+            voucher,
+            jobId
+        }
+    })
+
+    // run when the worker finishes
+    worker.on("message", async (voucherPdf: PDFDocument) => {
+        console.log("message rx")
+        let config: Config;
+        try {
+            const configStr = readConfig();
+            config = JSON.parse(configStr);
+        } catch (e) {
+            config = defaultConfig;
+        }
+
+        // make the vouchers directory if it doesn't exist
+        if (!existsSync(config.outputDir)) {
+            fs.mkdirSync(config.outputDir);
+        }
+        fs.writeFileSync(`${config.outputDir}/${jobId}.pdf`, await voucherPdf.save());
+        console.log("pdf generated!")
+    })
+    worker.on("error", (err) => {
+        console.error(err)
+    })
+}
+
+export async function createPdf(voucher: Voucher, jobId: string) {
     const voucherPdf = await PDFDocument.create();
 
     // add Aurigny font
@@ -293,23 +328,29 @@ export async function createPdf(voucher: Voucher) {
             maxWidth: page.getWidth() - ELEMENT_PADDING
         })
 
+        // update the progress
+        reportJobProgress(jobId, i + 1);
+        updateVoucherGenProgress(i + 1, numPages, jobId);
+
     }
 
-    let config: Config;
-    try {
-        const configStr = readConfig();
-        config = JSON.parse(configStr);
-    } catch (e) {
-        config = defaultConfig;
-    }
+    // let config: Config;
+    // try {
+    //     const configStr = readConfig();
+    //     config = JSON.parse(configStr);
+    // } catch (e) {
+    //     config = defaultConfig;
+    // }
 
-    // make the vouchers directory if it doesn't exist
-    if (!existsSync(config.outputDir)) {
-        fs.mkdirSync(config.outputDir);
-    }
+    // // make the vouchers directory if it doesn't exist
+    // if (!existsSync(config.outputDir)) {
+    //     fs.mkdirSync(config.outputDir);
+    // }
 
-    fs.writeFileSync(`${config.outputDir}/${voucher.flightNumber}_${voucher.issuer.initials}_voucher.pdf`, await voucherPdf.save());
-
+    // fs.writeFileSync(`${config.outputDir}/${jobId}.pdf`, await voucherPdf.save());
+    return voucherPdf;
 }
 
-// 80 x 115
+parentPort?.postMessage(
+    createPdf(workerData.voucher, workerData.jobId)
+)

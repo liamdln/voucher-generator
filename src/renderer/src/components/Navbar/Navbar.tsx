@@ -1,6 +1,7 @@
 import "./navbar.css"
 // @ts-ignore
 import aurigny from "../../assets/aurigny.png"
+import { IoMdArrowDropdown } from "react-icons/io"
 
 function Navbar({ activePage }: { activePage?: string }) {
     return (
@@ -12,7 +13,16 @@ function Navbar({ activePage }: { activePage?: string }) {
                 <div className="controls">
                     <ul className="nav-items">
                         <li><a href="#/" className={`nav-link ${activePage === "home" && "active"}`}>Home</a></li>
-                        <li><a href="#/issuers" className={`nav-link ${activePage === "issuers" && "active"}`}>Issuers</a></li>
+                        <li>
+                            <span className={`nav-link dropdown ${activePage === "" && "active"}`}>
+                                <span>Management <IoMdArrowDropdown /></span>
+                                <div className="dropdown-content">
+                                    <a href="#/issuers">Issuers</a>
+                                    <a href="#/jobs">Jobs</a>
+                                    <a href="#/vouchers">Vouchers</a>
+                                </div>
+                            </span>
+                        </li>
                         <li><a href="#/settings" className={`nav-link ${activePage === "settings" && "active"}`}>Settings</a></li>
                     </ul>
                 </div>
