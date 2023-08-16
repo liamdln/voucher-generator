@@ -1,6 +1,6 @@
-import { Config } from "../../../types/config";
+import { Config } from "../../types/config";
 import path from "path";
-import { appStore } from "../store/store";
+import { appStore } from "./store";
 
 export const defaultConfig: Config = {
     outputDir: path.join(process.cwd(), "vouchers")

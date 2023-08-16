@@ -1,10 +1,10 @@
 import { PDFDocument, rgb } from "pdf-lib";
 import Fontkit from "@pdf-lib/fontkit";
 import fs, { existsSync } from 'fs';
-import { Voucher } from "../../../types/voucher";
+import { Voucher } from "../../types/voucher";
 import moment from "moment";
-import { defaultConfig, readConfig } from "../config/config";
-import { Config } from "../../../types/config";
+import { defaultConfig, readConfig } from "./config";
+import { Config } from "../../types/config";
 import museosans from "../../../../resources/museosans.otf?asset&asarUnpack"
 import aurigny from "../../../../resources/aurigny.png?asset&asarUnpack"
 
