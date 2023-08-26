@@ -26,7 +26,9 @@
     "electron-updater": "^5.3.0",
     "moment": "^2.29.4",
     "pdf-lib": "^1.17.1",
-    "react-icons": "^4.10.1"
+    "pdf-to-printer": "^5.6.0",
+    "react-icons": "^4.10.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^1.0.1",

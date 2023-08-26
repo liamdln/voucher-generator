@@ -1,0 +1,28 @@
+.vouchers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+h2 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.voucher-subtitle {
+    font-style: italic;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.voucher-card {
+    display: flex;
+    align-items: center;
+}
+
+.voucher-details {
+    margin-right: auto;
+    width: 100%;
+}

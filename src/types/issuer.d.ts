@@ -1,5 +1,5 @@
 export interface Issuer {
-    name: string;
-    initials: string;
-    voucher_count: number;
+    name: string
+    initials: string
+    voucher_count: number
 }

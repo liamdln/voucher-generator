@@ -5,9 +5,7 @@ export enum Level {
 }
 
 export class Logger {
-
-    static log(content: string, level: Level) {
+    static log(content: string, level: Level): void {
         console.log(`${new Date()} [${level}] >> ${content}`)
     }
-
 }

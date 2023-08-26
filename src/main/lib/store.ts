@@ -1,4 +1,4 @@
-import Store from "electron-store";
+import Store from "electron-store"
 
 export const appStore = new Store({
     schema: {
@@ -20,7 +20,27 @@ export const appStore = new Store({
                 outputDir: { type: "string" }
             },
             required: ["outputDir"]
+        },
+        vouchers: {
+            type: "array",
+            items: {
+                type: "object",
+                properties: {
+                    generatedTime: {
+                        type: "object",
+                        properties: {
+                            date: { type: "string" },
+                            time: { type: "string" }
+                        },
+                        required: ["date", "time"]
+                    },
+                    issuer: { type: "string" },
+                    flightNumber: { type: "string" },
+                    outputDir: { type: "string" },
+                    id: { type: "string" }
+                },
+                required: ["generatedTime", "issuer", "flightNumber", "outputDir", "id"]
+            }
         }
     }
 })
-

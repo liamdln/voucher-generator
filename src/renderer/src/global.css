@@ -69,6 +69,17 @@ label {
     animation: spin 2s linear infinite;
 }
 
+.card {
+    border: 1px solid rgba(55, 71, 79, 0.25);
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);

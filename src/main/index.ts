@@ -35,7 +35,6 @@ function createWindow(): void {
     } else {
         mainWindow.loadFile(join(__dirname, "../renderer/index.html"))
     }
-
 }
 
 // This method will be called when Electron has finished
@@ -56,7 +55,7 @@ app.on("ready", async () => {
     createWindow()
 
     // register IPC handlers
-    registerIpcHandlers();
+    registerIpcHandlers()
 
     app.on("activate", function () {
         // On macOS it"s common to re-create a window in the app when the
