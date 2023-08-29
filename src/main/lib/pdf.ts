@@ -6,13 +6,21 @@ import moment from "moment"
 import museosans from "../../../resources/museosans.otf?asset&asarUnpack"
 import aurigny from "../../../resources/aurigny.png?asset&asarUnpack"
 
+// const ELEMENT_PADDING = 4
+// const TITLE_FONT_SIZE = 14
+// const SECONDARY_TITLE_FONT_SIZE = 10
+// const TEXT_FONT_SIZE = 6
+// const LINE_HEIGHT = 7
+// const DISCLAIMER_FONT_SIZE = 4
+// const DISCLAIMER_LINE_HEIGHT = 5
+
 const ELEMENT_PADDING = 4
 const TITLE_FONT_SIZE = 14
 const SECONDARY_TITLE_FONT_SIZE = 10
-const TEXT_FONT_SIZE = 6
-const LINE_HEIGHT = 7
-const DISCLAIMER_FONT_SIZE = 4
-const DISCLAIMER_LINE_HEIGHT = 5
+const TEXT_FONT_SIZE = 7
+const LINE_HEIGHT = 8
+const DISCLAIMER_FONT_SIZE = 7
+const DISCLAIMER_LINE_HEIGHT = 8
 
 moment.locale("en-gb")
 
@@ -98,8 +106,8 @@ export async function createPdf(
 
         // update the space used. As the text wraps and there are two
         // line breaks, the space used is quadrupled as there are
-        // 4 lines of text.
-        usedSpace += descriptionHeight * 4
+        // 5 lines of text.
+        usedSpace += descriptionHeight * 5
 
         // =================================================================================================
 
