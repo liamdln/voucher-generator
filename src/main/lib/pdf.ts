@@ -287,7 +287,7 @@ export async function createPdf(
         const disclaimer =
             "Aurigny T&Cs apply.\n" +
             "This voucher can only be redeemed on the date shown above. No change will be given if " +
-            "expenditure is less than the voucher value.This voucher is not transferable for cash.\n" +
+            "expenditure is less than the voucher value. This voucher is not transferable for cash.\n" +
             `Generated on ${currentDateTime.date} at ${currentDateTime.time}. Voucher #${i + 1}`
 
         page.drawText(disclaimer, {
